@@ -11,8 +11,8 @@ import (
 type Show struct {
 	Name        string
 	Genre       string
-	TimeSlots   map[string]int // TimeSlot -> Capacity
-	Bookings    map[string]Booking
+	TimeSlots   map[string]int     // TimeSlot -> Capacity
+	Bookings    map[string]Booking //User -> Booking
 	Waitlist    []string
 	BookedCount int
 }
@@ -57,6 +57,7 @@ func (bs *BookingSystem) OnboardShowSlots(name string, slots string) error {
 		startTime := slotParts[0]
 		endTime := slotParts[1]
 
+		//check for valid slot
 		valid, err := isValidTimeSlot(startTime, endTime)
 		if err != nil || !valid {
 			return errors.New("time slot must be exactly one hour")

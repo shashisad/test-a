@@ -80,7 +80,10 @@ func main() {
 	}
 
 	// Cancel booking
-	_ = bs.CancelBooking("UserA")
+	err = bs.CancelBooking("UserA")
+	if err != nil {
+		fmt.Println(err)
+	}
 
 	// Show available after cancellation
 	comedyShows = bs.ShowAvailableByGenre("Comedy")
@@ -92,5 +95,8 @@ func main() {
 	}
 
 	// Book another ticket from waitlist
-	_, _ = bs.BookTicket("UserB", "TMKOC", "12:00", 1)
+	_, err = bs.BookTicket("UserB", "TMKOC", "12:00-1:00", 1)
+	if err != nil {
+		fmt.Println(err)
+	}
 }
